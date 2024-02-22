@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Jogos</title>
+    <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Jogos</h1>
+
+<table border="1">
+    <tr>
+        <th>NOME</th>
+        <th>LOCALIZAÇÃO</th>
+        <th>DATA INICIO</th>
+        <th>EQUIPA A</th>
+        <th>GOLOS</th>
+        <th>EQUIPA B</th>
+        <th>GOLOS</th>
+        <th>MARCADORES</th>
+        <th>CARTOES AMARELOS</th>
+        <th>CARTOES VERMELHOS</th>
+        <th>ESTADO</th>
+    </tr>
+    <tr th:each="e : ${jogo}">
+        <td th:text="${e.nome}">nome</td>
+        <td th:text="${e.localizacao}">localizacao</td>
+        <td th:text="${#dates.format(e.data_inicio, 'yyyy-MM-dd HH:mm')}">data_inicio</td>
+        <td th:text="${e.equipas[0].nome}">equipa A</td>
+        <td th:text="${e.currGolosEquipaCasa}">golos A</td>
+        <td th:text="${e.equipas[1].nome}">equipa B</td>
+        <td th:text="${e.currGolosEquipaFora}">golos B</td>
+        <td>
+            <p th:each="g : ${e.golos}">
+                <span th:text="${g.marcador.nome}">Marcador</span>
+            </p>
+        </td>
+        <td>
+            <p th:each="c : ${e.cartoes}">
+                <span th:if="${c.tipo == 'Cartao Amarelo'}">
+                    <span th:text="${c.jogador.nome}">Jogador</span>
+                </span>
+            </p>
+        </td>
+        <td>
+            <p th:each="c : ${e.cartoes}">
+                <span th:if="${c.tipo == 'Cartao Vermelho'}">
+                    <span th:text="${c.jogador.nome}">Jogador</span>
+                </span>
+            </p>
+        </td>
+        <td>
+            <span th:if="${#lists.size(e.ocorrencias) == 0}"></span>
+            <span th:unless="${#lists.size(e.ocorrencias) == 0}">
+                <span th:text="${e.ocorrencias[#lists.size(e.ocorrencias)-1].tipo}">Estado do Jogo</span>
+            </span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

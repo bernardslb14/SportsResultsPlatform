@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista Jogadores</title>
+  <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Jogadores</h1>
+
+<form action="/insertPLPlayers" method="post">
+  <button type="submit">Popular com Jogadores da PremierLeague 21/22</button>
+</form>
+
+<br>
+
+<table border="1">
+  <tr>
+    <th>NOME</th>
+    <th>POSICAO</th>
+    <th>DATA NASCIMENTO</th>
+    <th>EQUIPA</th>
+    <th>GOLOS</th>
+    <th>CARTOES</th>
+  </tr>
+  <tr th:each="j : ${jogadores}">
+    <td th:text="${j.nome}">nome</td>
+    <td th:text="${j.posicao}">posicao</td>
+    <td th:text="${#dates.format(j.data_nascimento, 'yyyy-MM-dd')}">data_nascimento</td>
+    <td th:text="${j.equipa.nome}">equipa</td>
+    <td th:text="${#lists.size(j.golosJogador)}">Golos Marcados</td>
+    <td th:text="${#lists.size(j.cartoesJogador)}">Cartoes Recebidos</td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Equipas</title>
+    <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Equipas</h1>
+
+
+<form action="/insertPLTeams" method="post">
+    <button type="submit">Popular com equipas da PremierLeague 21/22</button>
+</form>
+
+<br>
+
+<table border="1">
+    <tr>
+        <th>NOME</th>
+        <th>IMAGEM</th>
+    </tr>
+    <tr th:each="e : ${equipas}">
+        <td th:text="${e.nome}">nome</td>
+        <td><img th:src="${e.imagem}" width="40" height="40"></td>
+    </tr>
+</table>
+
+</body>
+</html>

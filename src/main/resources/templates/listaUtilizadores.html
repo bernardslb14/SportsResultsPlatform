@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista Utilizadores</title>
+  <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Utilizadores</h1>
+
+<table border="1">
+  <tr>
+    <th>NOME</th>
+    <th>PASSWORD</th>
+    <th>EMAIL</th>
+    <th>CONTACTO</th>
+    <th>ADMIN</th>
+  </tr>
+  <tr th:each="u : ${users}">
+    <td th:text="${u.nome}">nome</td>
+    <td th:text="${u.password}">password</td>
+    <td th:text="${u.email}">email</td>
+    <td th:text="${u.contacto}">contacto</td>
+    <td>
+      <span th:if="${u.isAdmin}">&#x2714;</span>
+      <span th:unless="${u.isAdmin}">&#x2716;</span>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
